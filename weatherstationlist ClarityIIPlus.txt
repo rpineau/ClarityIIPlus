@@ -1,0 +1,3 @@
+//See hardwarelist.txt for details on this file format.
+//Version|Manufacturer|Model|Comment|MapsTo|PlugInDllName
+2|RTI-Zone|ClarityII Plus|Read ClarityII file from Boltwood and Boltwood-compatible app with some extension (SQM)| |libClarityIIPlus||1|1|1|
