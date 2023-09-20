@@ -311,7 +311,7 @@ int X2WeatherStation::weatherStationData(double& dSkyTemp,
     dSkyTemp = m_ClarityIIPlus.getSkyTemp();
     dAmbTemp = m_ClarityIIPlus.getAmbientTemp();
     nTempUnit = m_ClarityIIPlus.getTempUnit();
-    if(nTempUnit == FAR) {
+    if(nTempUnit == FRH) {
         // convert to C
         dSkyTemp = (dSkyTemp-32) / 1.8;
         dAmbTemp = (dAmbTemp-32) / 1.8;

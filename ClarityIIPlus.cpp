@@ -249,7 +249,7 @@ int CClarityIIPlus::getData()
     // 2005-06-03 02:07:23.34 C K  -28.5   18.7   22.5   45.3  75   10.3   3 0 0 00004 038506.08846 1 2 1 0 0 0 +21.88
     // 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
     // 0         1         2         3         4         5         6         7         8         9        10        11
-    m_nTempUnit = m_sClarityIIData.at(23)=='C'?CEL:FAR;
+    m_nTempUnit = m_sClarityIIData.at(23)=='C'?CEL:FRH;
     m_nWinSpeedUnit = m_sClarityIIData.at(25)=='K'?KPH:MPH;
     m_dSkyTemp = std::stod(m_sClarityIIData.substr(27,6));
     m_dTemp = std::stod(m_sClarityIIData.substr(34,6));

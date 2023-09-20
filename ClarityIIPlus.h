@@ -52,7 +52,7 @@
 enum ClarityIIPlusErrors {PLUGIN_OK=0, NOT_CONNECTED, CANT_CONNECT, BAD_CMD_RESPONSE, COMMAND_FAILED, COMMAND_TIMEOUT, PARSE_FAILED};
 
 enum ClarityIIPlusWindUnits {KPH=0, MPS, MPH};
-enum ClarityIIPlusTempUnits {CEL=0, FAR, KEL};
+enum ClarityIIPlusTempUnits {CEL=0, FRH, KEL};
 
 class CClarityIIPlus
 {
