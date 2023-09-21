@@ -94,6 +94,7 @@ int X2WeatherStation::execModalSettingsDialog()
     }
     X2MutexLocker ml(GetMutex());
 
+    dx->setText("fileCheckStatus","");
     m_ClarityIIPlus.getClarityIIDataFileName(sTmp);
     dx->setText("filePath", sTmp.c_str());
     if(sTmp.size())
@@ -124,7 +125,7 @@ int X2WeatherStation::execModalSettingsDialog()
 
 void X2WeatherStation::uiEvent(X2GUIExchangeInterface* uiex, const char* pszEvent)
 {
-    int nErr = PLUGIN_OK;
+    int nErr = SB_OK;
     std::stringstream ssTmp;
     std::string sTmp;
     char szTmpBuf[4096];
@@ -143,13 +144,17 @@ void X2WeatherStation::uiEvent(X2GUIExchangeInterface* uiex, const char* pszEven
         sTmp.assign(szTmpBuf);
         m_ClarityIIPlus.setClarityIIDataFileName(sTmp);
         nErr = m_ClarityIIPlus.getData();
-        if (nErr) {
+        if (nErr != PLUGIN_OK) {
             ssTmp << "Read file error : " << nErr;
             uiex->messageBox("Error reading file", ssTmp.str().c_str());
+            uiex->setText("fileCheckStatus","<html><head/><body><p><span style=\" color:#FF0000;\">File can't be read or contains bad data</span></p></body></html>");
             return;
         }
         uiex->setEnabled("sqmThreshold", m_ClarityIIPlus.isSqmAvailable());
         updateUI(uiex);
+        m_ClarityIIPlus.getClarityIIDataFileName(sTmp);
+        uiex->setText("filePath", sTmp.c_str());
+        uiex->setText("fileCheckStatus","<html><head/><body><p><span style=\" color:#00FF00;\">File check successful</span></p></body></html>");
     }
 }
 
