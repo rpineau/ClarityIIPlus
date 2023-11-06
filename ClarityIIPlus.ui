@@ -427,6 +427,19 @@
        <string>Check file</string>
       </property>
      </widget>
+     <widget class="QLabel" name="fileCheckStatus">
+      <property name="geometry">
+       <rect>
+        <x>232</x>
+        <y>56</y>
+        <width>240</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>File check successful</string>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>
