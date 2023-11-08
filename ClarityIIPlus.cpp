@@ -314,6 +314,7 @@ int CClarityIIPlus::readDataFile()
         m_Datafile.close();
 
     m_Datafile.open(m_sDataFilePath, std::ifstream::in);
+    m_Datafile.sync_with_stdio(true);
     
     if(m_Datafile.is_open()) {
         while (std::getline(m_Datafile, sTmp)) {
