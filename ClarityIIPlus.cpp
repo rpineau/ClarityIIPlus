@@ -314,9 +314,9 @@ int CClarityIIPlus::readDataFile()
         m_Datafile.close();
 
     m_Datafile.open(m_sDataFilePath, std::ifstream::in);
-    m_Datafile.sync_with_stdio(true);
-    
+
     if(m_Datafile.is_open()) {
+        m_Datafile.sync_with_stdio(true);
         while (std::getline(m_Datafile, sTmp)) {
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
     m_sLogFile << "["<<getTimeStamp()<<"]"<< " [readDataFile] sTmp : " << sTmp << std::endl;
