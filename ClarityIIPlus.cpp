@@ -267,7 +267,7 @@ int CClarityIIPlus::getData()
     m_nDaylightCondition = int(m_sClarityIIData.at(99)) - 48;
     m_bNeedClose = m_sClarityIIData.at(101)=='1'?true:false;
     m_bAlert = m_sClarityIIData.at(103)=='1'?true:false;
-    if(m_sClarityIIData.size()>103) {
+    if(m_sClarityIIData.size()>105) {
         m_dSQM = std::stod(m_sClarityIIData.substr(105,6));
         m_bHasSqm = true;
     } else
