@@ -43,7 +43,7 @@
 
 #define PLUGIN_VERSION      1.05
 
-// #define PLUGIN_DEBUG 3
+//#define PLUGIN_DEBUG 3
 
 #define FILE_CHECK_INTERVAL 10  // in seconds
 #define inHg_to_mBar  33.86389

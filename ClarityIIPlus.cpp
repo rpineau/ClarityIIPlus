@@ -240,7 +240,10 @@ int CClarityIIPlus::getData()
 
     if(!m_sDataFilePath.size())
         return ERR_F_DOESNOTEXIST;
-    
+
+	if(m_sDataFilePath.size()<103)
+		return ERR_BADFORMAT;
+
     if(!m_sClarityIIData.size())
         return ERR_CMDFAILED;
     
@@ -268,10 +271,18 @@ int CClarityIIPlus::getData()
     m_bNeedClose = m_sClarityIIData.at(101)=='1'?true:false;
     m_bAlert = m_sClarityIIData.at(103)=='1'?true:false;
     if(m_sClarityIIData.size()>105) {
-        m_dSQM = std::stod(m_sClarityIIData.substr(105,6));
-        m_bHasSqm = true;
-    } else
-        m_bHasSqm = false;
+		try {
+			m_dSQM = std::stod(m_sClarityIIData.substr(105,6));
+			m_bHasSqm = true;
+		}
+		catch (const std::out_of_range& ex) {
+			m_bHasSqm = false;
+		}
+    }
+	else {
+		m_bHasSqm = false;
+	}
+
 
 #if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
     m_sLogFile << "["<<getTimeStamp()<<"]"<< " [getData] m_nTempUnit            : " << m_nTempUnit << std::endl;
@@ -318,11 +329,6 @@ int CClarityIIPlus::readDataFile()
     if(m_Datafile.is_open()) {
         m_Datafile.sync_with_stdio(true);
         while (std::getline(m_Datafile, sTmp)) {
-#if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
-    m_sLogFile << "["<<getTimeStamp()<<"]"<< " [readDataFile] sTmp : " << sTmp << std::endl;
-    m_sLogFile.flush();
-#endif
-
             if(sTmp.find("//")==0) // we ingore comment lines
                 continue;
             m_sClarityIIData.assign(sTmp);
