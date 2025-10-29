@@ -336,9 +336,9 @@ int X2WeatherStation::weatherStationData(double& dSkyTemp,
 
     dWindCond = m_ClarityIIPlus.getWindCondition();
 
-    cloudCondition = (WeatherStationDataInterface::x2CloudCond)m_ClarityIIPlus.getCloudCondition();
-    windCondition = (WeatherStationDataInterface::x2WindCond)m_ClarityIIPlus.getWindCondition();
-    rainCondition = (WeatherStationDataInterface::x2RainCond)m_ClarityIIPlus.getRainCondition();
+    cloudCondition = (x2CloudCond)m_ClarityIIPlus.getCloudCondition();
+    windCondition = (x2WindCond)m_ClarityIIPlus.getWindCondition();
+    rainCondition = (x2RainCond)m_ClarityIIPlus.getRainCondition();
     if(m_ClarityIIPlus.isSqmAvailable()) {
         dSqm = m_ClarityIIPlus.getSQM();
         if(dSqm >= m_dSqmThreshold) {
@@ -351,10 +351,10 @@ int X2WeatherStation::weatherStationData(double& dSkyTemp,
     else
         daylightCondition = (WeatherStationDataInterface::x2DayCond)m_ClarityIIPlus.getLightCondition();
 
-	if ( cloudCondition >= WeatherStationDataInterface::x2CloudCond::cloudCloudy ||
-			rainCondition >= WeatherStationDataInterface::x2RainCond::rainWet ||
-			windCondition >= WeatherStationDataInterface::x2WindCond::windWindy ||
-			daylightCondition >= WeatherStationDataInterface::x2DayCond::dayLight
+	if ( cloudCondition >= x2CloudCond::cloudCloudy ||
+			rainCondition >= x2RainCond::rainWet ||
+			windCondition >= x2WindCond::windWindy ||
+			daylightCondition >= x2DayCond::dayLight
 		) {
 		nRoofCloseThisCycle = 1;
 	}
