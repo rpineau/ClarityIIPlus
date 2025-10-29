@@ -150,11 +150,11 @@ private:
 
     void    updateUI(X2GUIExchangeInterface* uiex);
     
-    int     m_nPrivateISIndex;
-	bool    m_bLinked;
+    int     m_nPrivateISIndex = 0;
+	bool    m_bLinked = false;
 
-    double  m_dSqmThreshold;
-    bool    m_bUiEnabled;
+    double  m_dSqmThreshold = 0.0;
+    bool    m_bUiEnabled = false;
 
     CClarityIIPlus  m_ClarityIIPlus;
     CStopWatch      m_DataTimer;
