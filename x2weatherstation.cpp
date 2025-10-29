@@ -342,14 +342,14 @@ int X2WeatherStation::weatherStationData(double& dSkyTemp,
     if(m_ClarityIIPlus.isSqmAvailable()) {
         dSqm = m_ClarityIIPlus.getSQM();
         if(dSqm >= m_dSqmThreshold) {
-            daylightCondition = WeatherStationDataInterface::x2DayCond::dayDark;
+            daylightCondition = x2DayCond::dayDark;
         }
         else {
-            daylightCondition = WeatherStationDataInterface::x2DayCond::dayLight;
+            daylightCondition = x2DayCond::dayLight;
         }
     }
     else
-        daylightCondition = (WeatherStationDataInterface::x2DayCond)m_ClarityIIPlus.getLightCondition();
+        daylightCondition = (x2DayCond)m_ClarityIIPlus.getLightCondition();
 
 	if ( cloudCondition >= x2CloudCond::cloudCloudy ||
 			rainCondition >= x2RainCond::rainWet ||
@@ -366,7 +366,7 @@ int X2WeatherStation::weatherStationData(double& dSkyTemp,
 
 WeatherStationDataInterface::x2WindSpeedUnit X2WeatherStation::windSpeedUnit()
 {
-    WeatherStationDataInterface::x2WindSpeedUnit nUnit = WeatherStationDataInterface::x2WindSpeedUnit::windSpeedKph;
+    x2WindSpeedUnit nUnit = x2WindSpeedUnit::windSpeedKph;
     int ClarityIIPlusUnit;
     std::stringstream tmp;
 
@@ -374,13 +374,13 @@ WeatherStationDataInterface::x2WindSpeedUnit X2WeatherStation::windSpeedUnit()
 
     switch(ClarityIIPlusUnit) {
         case KPH:
-            nUnit = WeatherStationDataInterface::x2WindSpeedUnit::windSpeedKph;
+            nUnit = x2WindSpeedUnit::windSpeedKph;
             break;
         case MPS:
-            nUnit = WeatherStationDataInterface::x2WindSpeedUnit::windSpeedMps;
+            nUnit = x2WindSpeedUnit::windSpeedMps;
             break;
         case MPH:
-            nUnit = WeatherStationDataInterface::x2WindSpeedUnit::windSpeedMph;
+            nUnit = x2WindSpeedUnit::windSpeedMph;
             break;
     }
 
