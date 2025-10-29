@@ -351,8 +351,16 @@ int X2WeatherStation::weatherStationData(double& dSkyTemp,
     else
         daylightCondition = (WeatherStationDataInterface::x2DayCond)m_ClarityIIPlus.getLightCondition();
 
-    nRoofCloseThisCycle = (m_ClarityIIPlus.getNeedClose()?1:0);
-
+	if ( cloudCondition >= WeatherStationDataInterface::x2CloudCond::cloudCloudy ||
+			rainCondition >= WeatherStationDataInterface::x2RainCond::rainWet ||
+			windCondition >= WeatherStationDataInterface::x2WindCond::windWindy ||
+			daylightCondition >= WeatherStationDataInterface::x2DayCond::dayLight
+		) {
+		nRoofCloseThisCycle = 1;
+	}
+	else {
+		nRoofCloseThisCycle = (m_ClarityIIPlus.getNeedClose()?1:0);
+	}
 	return nErr;
 }
 

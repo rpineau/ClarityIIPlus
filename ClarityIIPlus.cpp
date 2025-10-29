@@ -241,8 +241,13 @@ int CClarityIIPlus::getData()
     if(!m_sDataFilePath.size())
         return ERR_F_DOESNOTEXIST;
 
-	if(m_sDataFilePath.size()<103)
+	if(m_sClarityIIData.size()<103) {
+#if defined PLUGIN_DEBUG && PLUGIN_DEBUG >= 2
+	m_sLogFile << "["<<getTimeStamp()<<"]"<< " [getData] bad data, size = " << m_sDataFilePath.size() << std::endl;
+	m_sLogFile.flush();
+#endif
 		return ERR_BADFORMAT;
+	}
 
     if(!m_sClarityIIData.size())
         return ERR_CMDFAILED;
